@@ -1,9 +1,8 @@
-
 .greeting {
     border: 10px solid grey;
-    width: 90%;
+    width: 100%;
     text-align: center;
-    margin-left: 0%;
+    margin-left: -7.5%;
 }
 .sentence{
     margin-left: 4em;
@@ -26,6 +25,13 @@
 /* .resetButton{
     width: 8em; height: 3em;
 } */
+.usersButton{
+    width: 8em; height: 3em;
+    /* width: 20em; height: 4em;
+    margin-left: 10em;
+    margin-top: 1em;*/
+} 
+
 .names{
     margin-bottom: -35px;
 }
@@ -40,7 +46,10 @@ button {
 }
 
 .container {
-    margin-left: 5em;
+    margin-left: 10em;
+}
+.row{
+    margin-left: -3em;
 }
 
 .greetings {
@@ -53,12 +62,15 @@ button {
     margin-right: 20%;
     margin-top: 2em;
 }
-.message{
+.entry{
     color: red;
     margin-top: 1em;
     margin-left: -1em;
     padding: 2em;
 }
+#hidethis { animation: css 0s 3s forwards; }
+
+@keyframes css  { to { visibility: hidden; } }
 
 
 @media(max-width: 760px){
@@ -76,8 +88,3 @@ button {
      position: relative;
      right: 20em;
   } */
-
-        
-
-
-

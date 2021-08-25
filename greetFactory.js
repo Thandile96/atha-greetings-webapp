@@ -1,6 +1,6 @@
-module.exports = function greetings(existNames){
+module.exports = function greetings(){
     
-    var greetedNames = existNames || [];
+    var greetedNames = {};
 
     function setName(name){
         
@@ -9,8 +9,11 @@ module.exports = function greetings(existNames){
         var del = named.slice(1)
         var name = index + del
 
-        if(!greetedNames.includes(name)){
-            greetedNames.push(name)
+        if(greetedNames[name] === undefined){
+            greetedNames[name] = 1;
+        }
+        else {
+            greetedNames[name]++
         }
     }
 
@@ -39,7 +42,8 @@ module.exports = function greetings(existNames){
     }
  
     function counter(){
-      return   greetedNames.length;
+      var namesList = Object.keys(greetedNames);
+      return   namesList.length;
     }
 
     function errorMsgs(language, name){
@@ -64,3 +68,4 @@ module.exports = function greetings(existNames){
         errorMsgs 
     }
 }
+
