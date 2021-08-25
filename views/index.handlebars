@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/greet.css">
+</head>
+
+<body>
+    
+    <div class="greeting">
+        <h1>GREETING</h1>
+    </div>
+     <p class="sentence">Please enter a name and select a language in order to be greeted in the language selected</p> 
+    <div class="container">
+        <p class="message"></p>
+     <form action="/" method="POST">
+        <label for="name">Name</label>
+        <input type="text" placeholder="" name="name" class="names"> 
+        <p id="counter" style="font-size: 150%;  font-weight: bolder; float: right clearfix; margin-left: 10em; margin-top: -1em">Counter: <span class="greetCount">{{namesGreeted}}</span></p>
+     
+        <div class="block">
+            <input type="radio" name="languages" class="radioEnglish" value="English"><br> 
+            <span class="label">English</span>
+            
+            <input type="radio" name="languages" class="radioXhosa" value="IsiXhosa"><br>
+            <span class="label">IsiXhosa</span>
+            
+            <input type="radio" name="languages" class="radioSotho" value="Sesotho"><br>
+            <span class="label">Sesotho</span>  
+      </div>
+
+        <button class="greetButton" type="submit" name="button">Greet Me</button>
+        <button class="resetButton" type="submit" name="button">Reset</button>
+     </form>
+    </div>
+
+    <br>
+    <div class="greetings">{{greet}}</div>
+       
+</body>
+</html>

@@ -1,0 +1,83 @@
+
+.greeting {
+    border: 10px solid grey;
+    width: 90%;
+    text-align: center;
+    margin-left: 0%;
+}
+.sentence{
+    margin-left: 4em;
+}
+.radioEnglish{
+    margin-left: 4px; 
+}
+.radioXhosa{
+    margin-left: 45px;
+}
+.radioSotho{
+    margin-left: 30px;
+}
+.label{
+    margin-left: 30px;
+}
+.greetButton{
+    width: 8em; height: 3em;
+}
+/* .resetButton{
+    width: 8em; height: 3em;
+} */
+.names{
+    margin-bottom: -35px;
+}
+
+.block{
+    display: flex;
+    margin-top: 55px;
+}
+
+button {
+    margin-top: 4.5em;
+}
+
+.container {
+    margin-left: 5em;
+}
+
+.greetings {
+    font-size: 26px;
+    padding-left: 12.5em; 
+    margin-right: -25em;
+}
+
+#counter{
+    margin-right: 20%;
+    margin-top: 2em;
+}
+.message{
+    color: red;
+    margin-top: 1em;
+    margin-left: -1em;
+    padding: 2em;
+}
+
+
+@media(max-width: 760px){
+   p.sentence{
+        margin-right: -25em;
+    }
+    .container{
+        display: block;
+    }
+
+}
+
+/* @media(min-width: 800px){
+  .container{
+     position: relative;
+     right: 20em;
+  } */
+
+        
+
+
+
