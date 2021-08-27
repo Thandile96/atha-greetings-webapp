@@ -39,8 +39,11 @@ app.get('/', function (req, res) {
 //Greeting and counting
 app.post('/greet', function (req, res) {
     const { languages, name } = req.body
+    var namesGreeted = theGreetings.counter()
+    
     if (name === "" && languages === undefined) { 
-        req.flash('errors', "Please enter name and select language!")
+        req.flash('errors', "Please enter name and select language!") 
+        namesGreeted.length
     }
     else if (name === "") {
 

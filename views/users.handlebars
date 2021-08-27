@@ -1,13 +1,18 @@
 <div class="row">
-    <h1>A list of users greeted</h1>
-<ul>
+    <div class="listOfUsers">
+        <h1>A list of names greeted</h1>
+    </div>
+    
+<ul style="position:fixed; left:30em; top:7em;">
         
     {{#each greeting}}
     
-        <h2><a href="/greeted/{{@key}}" style="color:black">{{@key}}</a></h2>
+        <h2><a href="/greeted/{{@key}}" style="color:black;">{{@key}}</a></h2>
     
     {{/each}} 
 </ul>
+<br>
+<button class="backButton"><a href="/" style="color:black">BACK</a></button>
    
 </div>
  

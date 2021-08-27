@@ -13,11 +13,9 @@
         <h1>GREETING</h1>
     </div>
     <p class="sentence">Please enter a name and select a language in order to be greeted in the language selected</p>
-    <div class="container">
-        <div class="entry" id="hidethis">
-            <h3> {{messages.errors}}</h3>
-        </div>
-
+    <h3 class="entry"> {{messages.errors}}</h3>
+    <div class="body-content">
+        
         <form action="/greet" method="POST">
             <label for="name">Name</label>
             <input type="text" placeholder="" name="name" class="names">
@@ -38,13 +36,13 @@
 
             <button class="greetButton" type="submit" name="button">Greet Me</button>
             {{!-- <button class="resetButton" type="submit" name="button">Reset</button> --}}
-            <button class="usersButton"><a href="/greeted" style="color:black">Users Greeted</a></button>
+            <button class="usersButton"><a href="/greeted" style="color:black">Names Greeted</a></button>
         </form>
     </div>
     <br>
     <div class="greetings">{{greet}}</div>
     <br>
-   
+
 
 </body>
 
