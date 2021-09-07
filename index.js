@@ -49,7 +49,7 @@ const theGreetings = greetings(pool);
 //setting values
 app.get('/', async function (req, res) {
     res.render('index', {
-        nameInput: await theGreetings.getNames(),
+        nameInput: theGreetings.getNames(),
         greet: await theGreetings.greetMe(),
         namesGreeted: await theGreetings.counter(),
     });
