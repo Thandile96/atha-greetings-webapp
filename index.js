@@ -4,10 +4,11 @@ const bodyParser = require('body-parser');
 const greetings = require('./greetFactory');
 const flash = require('express-flash');
 const session = require('express-session');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const pg = require("pg");
+const Pool = pg.Pool;
 
 const app = express();
-const theGreetings = greetings();
 
 const setupHandlebars = exphlbs({
     partialsDir: "./views/partials",
@@ -28,18 +29,35 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(flash());
+
+let useSSL = false;
+let local = process.env.LOCAL || false;
+if (process.env.DATABASE_URL && !local){
+    useSSL = true;
+}
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/my_users';
+;
+console.log(connectionString);
+
+const pool = new Pool({
+    connectionString,
+    ssl : useSSL
+});
+
+const theGreetings = greetings(pool);
+
 //setting values
-app.get('/', function (req, res) {
+app.get('/', async function (req, res) {
     res.render('index', {
-        nameInput: theGreetings.getNames(),
-        greet: theGreetings.greetMe(),
-        namesGreeted: theGreetings.counter(),
+        nameInput: await theGreetings.getNames(),
+        greet: await theGreetings.greetMe(),
+        namesGreeted: await theGreetings.counter(),
     });
 });
 //Greeting and counting
-app.post('/greet', function (req, res) {
+app.post('/greet', async function (req, res) {
     const { languages, name } = req.body
-    var namesGreeted = theGreetings.counter()
+    var namesGreeted = await theGreetings.counter()
     
     if (name === "" && languages === undefined) { 
         req.flash('errors', "Please enter name and select language!") 
@@ -53,9 +71,9 @@ app.post('/greet', function (req, res) {
     }
     else {
     
-        var greet = theGreetings.greetMe(languages, name)
+        var greet = await theGreetings.greetMe(languages, name)
         var pushNames = theGreetings.setName(name)
-        var namesGreeted = theGreetings.counter()
+        var namesGreeted = await theGreetings.counter()
 
     }
     res.render('index', { greet, pushNames, namesGreeted })
@@ -72,6 +90,11 @@ app.get('/greeted/:name', function (req, res) {
     let greetingsNumber = theGreetings.getNames()
     res.render('countUser', { name: username, counter: greetingsNumber[username] })
 });
+//reset counter
+app.post('/reset', async function (req, res){
+     await theGreetings.resetCounter()
+     res.redirect('/') 
+})
 
 const PORT = process.env.PORT || 3012; // made port number configurable using an env variable
 

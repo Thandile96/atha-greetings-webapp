@@ -35,14 +35,15 @@
             </div>
 
             <button class="greetButton" type="submit" name="button">Greet Me</button>
-            {{!-- <button class="resetButton" type="submit" name="button">Reset</button> --}}
             <button class="usersButton"><a href="/greeted" style="color:black">Names Greeted</a></button>
         </form>
     </div>
     <br>
     <div class="greetings">{{greet}}</div>
     <br>
-
+     <form action="/reset" method="POST">
+        <button class="resetButton" type="submit" name="button">Reset</button>
+    </form>
 
 </body>
 

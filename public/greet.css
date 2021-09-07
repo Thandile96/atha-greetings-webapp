@@ -28,9 +28,11 @@
 .greetButton{
     width: 10em; height: 3em;
 }
-/* .resetButton{
+.resetButton{
     width: 10em; height: 3em;
-} */
+    margin-left: 35em;
+    margin-top: 2em;
+}
 .usersButton{
     width: 10em; height: 3em;
 } 
@@ -61,7 +63,7 @@ button {
 .greetings {
     font-size: 26px;
     padding-left: 12.5em; 
-    margin-left: 12em;
+    margin-left: 5em;
 }
 
 #counter{
@@ -89,8 +91,3 @@ button {
 
 }
 
-/* @media(min-width: 800px){
-  .container{
-     position: relative;
-     right: 20em;
-  } */

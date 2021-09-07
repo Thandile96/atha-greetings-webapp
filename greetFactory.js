@@ -1,5 +1,5 @@
-module.exports = function greetings(){
-    
+module.exports = function greetings(pool){
+   
     var greetedNames = {};
 
     function setName(name){
@@ -18,32 +18,46 @@ module.exports = function greetings(){
     }
 
     function getNames(){
-        return greetedNames
+        return greetedNames;    
     }
 
-    function greetMe(language, name) {
-        
+    async function greetMe(language, name) {
+
+        try {
         var named = escape(name).toLowerCase()
         var index = named.charAt(0).toUpperCase();
         var del = named.slice(1)
-        var name = index + del
+        var newName = index + del
+       
+        const query = await pool.query('select name from users WHERE name = $1', [newName])
+        // console.log(query.rows);
 
+        if(query.rowCount === 0){
+            await pool.query('INSERT INTO users (name, counter) VALUES ($1, $2)', [newName, 1])
+        }
+
+        else {
+            await pool.query('UPDATE users SET counter = counter +1 WHERE name = $1', [newName])
+        }
         if(language === 'English') {
-            return "Hello, " + name;
+            return "Hello, " + newName;
         }
 
         else if(language === 'IsiXhosa'){
-            return "Molo, " + name;
+            return "Molo, " + newName;
         }
     
         else if(language === 'Sesotho'){
-            return "Lumela, " + name;
+            return "Lumela, " + newName;
+        }
+        } catch (error) {
+            console.log(error)
         }
     }
  
-    function counter(){
-      var namesList = Object.keys(greetedNames);
-      return   namesList.length;
+    async function counter(){
+      var namesList = await pool.query('select * from users')
+      return   namesList.rowCount;
     }
 
     function errorMsgs(language, name){
@@ -59,13 +73,20 @@ module.exports = function greetings(){
         }        
        
     }
+
+    async function resetCounter(){
+        var resetIT = await pool.query('DELETE from users')
+        return resetIT;
+
+    }
     
     return {
         greetMe,
         setName,
         getNames,
         counter,
-        errorMsgs 
+        errorMsgs,
+        resetCounter
     }
 }
 
