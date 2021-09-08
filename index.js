@@ -41,7 +41,9 @@ console.log(connectionString);
 
 const pool = new Pool({
     connectionString,
-    ssl : useSSL
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 const theGreetings = greetings(pool);
@@ -51,7 +53,7 @@ app.get('/', async function (req, res) {
     res.render('index', {
         nameInput: theGreetings.getNames(),
         greet: await theGreetings.greetMe(),
-        namesGreeted: await theGreetings.counter(),
+        namesGreeted: await theGreetings.counter()
     });
 });
 //Greeting and counting
